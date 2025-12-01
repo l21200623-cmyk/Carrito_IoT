@@ -10,128 +10,124 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="container mt-3">
-    <nav class="panel d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center gap-2">
-        <h4 class="m-0">Aplicación de Control</h4>
-        <span class="badge bg-primary">Control</span>
-      </div>
-      <div class="d-flex gap-2">
-        <a class="btn primary" href="./index.html">Control</a>
-        <a class="btn ghost" href="./monitor/index.html">↔ Ir a Monitoreo</a>
-      </div>
-    </nav>
+  <nav class="panel d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-2">
+      <h5 class="m-0"><i class="fa-solid fa-gamepad me-2"></i>Control IoT</h5>
+    </div>
+    <div class="d-flex gap-2">
+      <a class="btn btn-sm btn-primary disabled" href="#">Control</a>
+      <a class="btn btn-sm btn-outline-secondary" href="./monitor/index.html">Monitoreo</a>
+    </div>
+  </nav>
 
-    <section class="panel panel-device">
-      <div class="row g-2 align-items-end justify-content-center">
-        <div class="col-12 col-md-3">
-          <label class="form-label mb-1">Dispositivo (ID en BD)</label>
-          <input id="deviceIdInput" type="number" class="form-control" min="1" step="1" placeholder="1">
-        </div>
-        <div class="col-12 col-md-2 d-grid">
-          <button id="btnSetDevice" class="btn primary">Conectar</button>
-        </div>
-        <div class="col-12 col-md-7 text-start text-md-end">
-          <div class="status-box d-inline-block">
-            <span class="fw-semibold">Estado:</span>
-            <span id="estado" class="fw-semibold fst-italic">EN ESPERA</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="panel-container mx-auto py-4">
+  <div class="app-container">
     
-      <div class="text-center mb-4">
-        <strong class="me-2">Velocidad:</strong>
-        <div class="form-check form-check-inline ms-2">
-          <input class="form-check-input" type="radio" name="velocidadNivel" id="velBaja" value="100">
-          <label class="form-check-label" for="velBaja">Baja (100)</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="velocidadNivel" id="velMedia" value="180" checked>
-          <label class="form-check-label" for="velMedia">Media (180)</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="velocidadNivel" id="velAlta" value="255">
-          <label class="form-check-label" for="velAlta">Alta (255)</label>
-        </div>
-      </div>
-      <div class="row justify-content-center align-items-center g-3">
-        <div class="col-2 d-flex flex-column align-items-center justify-content-center gap-4">
-          <button class="btn-circle" data-status="1" title="Adelante"><i class="fa-solid fa-arrow-up fa-2x"></i></button>
-          <button class="btn-circle stop" data-status="3" title="Detener"><i class="fa-solid fa-exclamation fa-2x"></i></button>
-          <button class="btn-circle" data-status="2" title="Atrás"><i class="fa-solid fa-arrow-down fa-2x"></i></button>
+    <div class="panel-col">
+      <div class="panel control-zone">
+        <div class="velocity-selector">
+          <small class="fw-bold me-2">Velocidad:</small>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="velocidadNivel" id="velBaja" value="100">
+            <label class="form-check-label" for="velBaja">180</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="velocidadNivel" id="velMedia" value="180" checked>
+            <label class="form-check-label" for="velMedia">210</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="velocidadNivel" id="velAlta" value="255">
+            <label class="form-check-label" for="velAlta">255</label>
+          </div>
         </div>
 
-        <div class="col-8 d-flex justify-content-center align-items-center flex-wrap gap-4">
-          <button class="btn-circle" data-status="11" title="Giro 360° izquierda"><i class="fa-solid fa-rotate-left fa-2x"></i></button>
-
-          <div class="control-grid">
-            <button class="btn-square" data-status="5" title="Vuelta adelante izquierda"><i class="fa-solid fa-arrow-up fa-2x rotate--45"></i></button>
-            <button class="btn-square" data-status="4" title="Vuelta adelante derecha"><i class="fa-solid fa-arrow-up fa-2x rotate-45"></i></button>
-            <button class="btn-square" data-status="9" title="Giro 90° izquierda"><i class="fa-solid fa-arrow-left fa-2x"></i></button>
-            <button class="btn-square" data-status="8" title="Giro 90° derecha"><i class="fa-solid fa-arrow-right fa-2x"></i></button>
-            <button class="btn-square" data-status="7" title="Vuelta atrás izquierda"><i class="fa-solid fa-arrow-up fa-2x rotate--135"></i></button>
-            <button class="btn-square" data-status="6" title="Vuelta atrás derecha"><i class="fa-solid fa-arrow-up fa-2x rotate-135"></i></button>
+        <div class="main-controls">
+          <div class="d-flex flex-column gap-3 align-items-center">
+            <button class="btn-circle" data-status="1"><i class="fa-solid fa-arrow-up fa-2x"></i></button>
+            <button class="btn-circle stop" data-status="3"><i class="fa-solid fa-stop fa-2x"></i></button>
+            <button class="btn-circle" data-status="2"><i class="fa-solid fa-arrow-down fa-2x"></i></button>
           </div>
 
-          <button class="btn-circle" data-status="10" title="Giro 360° derecha"><i class="fa-solid fa-rotate-right fa-2x"></i></button>
-        </div>
-      </div>
-
-      <div class="row mt-4 justify-content-center">
-        <div class="col-12 col-lg-10 p-3 obstacle-box">
-          <div class="d-flex flex-wrap align-items-center gap-2">
-            <strong>Simular obstáculo:</strong>
-            <select id="obstacleType" class="form-select form-select-sm" style="max-width: 260px;">
-              <option value="1">1 — Adelante</option>
-              <option value="2">2 — Adelante-Izquierda</option>
-              <option value="3">3 — Adelante-Derecha</option>
-              <option value="4">4 — Adelante-Izquierda-Derecha</option>
-              <option value="5">5 — Retrocede</option>
-            </select>
-            <button id="btnObstacle" class="btn warn">⚠ Obstáculo</button>
-            <span id="obsMsg" class="msg"></span>
+          <div class="d-flex align-items-center gap-3">
+             <button class="btn-circle" data-status="11"><i class="fa-solid fa-rotate-left fa-1x"></i></button>
+             <div class="control-grid">
+                <button class="btn-square" data-status="5"><i class="fa-solid fa-arrow-up fa-2x rotate--45"></i></button>
+                <button class="btn-square" data-status="4"><i class="fa-solid fa-arrow-up fa-2x rotate-45"></i></button>
+                <button class="btn-square" data-status="9"><i class="fa-solid fa-arrow-left fa-2x"></i></button>
+                <button class="btn-square" data-status="8"><i class="fa-solid fa-arrow-right fa-2x"></i></button>
+                <button class="btn-square" data-status="7"><i class="fa-solid fa-arrow-up fa-2x rotate--135"></i></button>
+                <button class="btn-square" data-status="6"><i class="fa-solid fa-arrow-up fa-2x rotate-135"></i></button>
+             </div>
+             <button class="btn-circle" data-status="10"><i class="fa-solid fa-rotate-right fa-1x"></i></button>
           </div>
-          <small class="text-muted d-block mt-1">Ejecuta: POST /api/obstaculos y luego POST /api/evasion/ejecutar.</small>
         </div>
       </div>
     </div>
 
-    <section class="panel panel-seq">
-      <h3>Modo automático – Secuencias</h3>
-      <div class="seq-controls">
-        <button id="btnStartRec" class="btn ghost">🎬 Grabar secuencia</button>
-        <button id="btnStopRec" class="btn ghost" disabled>⏸️ Guardar</button>
-        <span id="recBadge" class="badge hidden">Grabando… 0 pasos</span>
-      </div>
+    <div class="panel-col">
+      
+      <section class="panel py-2">
+        <div class="d-flex align-items-center gap-2 justify-content-between">
+          <div class="d-flex align-items-center gap-2">
+            <label style="font-size: 0.85rem;">ID Disp:</label>
+            <input id="deviceIdInput" type="number" class="form-control form-control-sm" style="width: 70px;" value="1">
+            <button id="btnSetDevice" class="btn btn-sm btn-primary">Set</button>
+          </div>
+          <div class="status-box">
+             Estado: <span id="estado" class="fw-bold">...</span>
+          </div>
+        </div>
+      </section>
 
-      <div class="seq-form hidden" id="seqForm">
-        <label>Nombre de la secuencia</label>
-        <input id="seqName" type="text" placeholder="Ej. Cuadrado a la izquierda">
-        <label>Descripción (opcional)</label>
-        <input id="seqDesc" type="text" placeholder="Notas…">
-        <button id="btnSaveSeq" class="btn primary">💾 Guardar en BD</button>
-        <span id="seqSaveMsg" class="msg"></span>
-      </div>
+      <section class="panel obstacle-box">
+        <h6 class="m-0 mb-2"><i class="fa-solid fa-triangle-exclamation text-warning"></i> Simulación Obstáculo</h6>
+        <div class="d-flex gap-2">
+          <select id="obstacleType" class="form-select form-select-sm">
+            <option value="1">1—Adelante</option>
+            <option value="2">2—Izq</option>
+            <option value="3">3—Der</option>
+            <option value="5">5—Atrás</option>
+          </select>
+          <button id="btnObstacle" class="btn btn-sm btn-danger text-nowrap">Simular</button>
+        </div>
+        <div id="obsMsg" class="msg mt-1"></div>
+      </section>
 
-      <hr class="soft"/>
+      <section class="panel flex-grow-1">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+           <h6 class="m-0">Modo Automático</h6>
+           <span id="recBadge" class="badge bg-danger hidden">REC</span>
+        </div>
+        
+        <div class="seq-controls">
+          <button id="btnStartRec" class="btn btn-sm btn-outline-dark">🎬 Grabar</button>
+          <button id="btnStopRec" class="btn btn-sm btn-outline-danger" disabled>⏹ Guardar</button>
+        </div>
 
-      <div class="seq-run">
-        <button id="btnReloadSeq" class="btn ghost">🔄 Recargar</button>
-        <select id="seqSelect"></select>
-        <button id="btnRunSeq" class="btn success">▶ Ejecutar</button>
-        <button id="btnStopAuto" class="btn warn">■ Detener</button>
-        <span id="seqRunMsg" class="msg"></span>
-      </div>
+        <div id="seqForm" class="hidden my-2 p-2 bg-light rounded">
+          <input id="seqName" type="text" class="form-control form-control-sm mb-1" placeholder="Nombre secuencia...">
+          <button id="btnSaveSeq" class="btn btn-sm btn-success w-100">Confirmar Guardado</button>
+          <span id="seqSaveMsg" class="msg d-block"></span>
+        </div>
 
-      <div id="seqPreview" class="seq-preview"></div>
-    </section>
+        <hr class="my-2"/>
 
-    <footer class="footer text-center my-4"><p>Desarrollado por Brandon PM © 2025</p></footer>
+        <div class="d-flex gap-1 mb-1">
+            <button id="btnReloadSeq" class="btn btn-sm btn-light border"><i class="fa-solid fa-sync"></i></button>
+            <select id="seqSelect" class="form-select form-select-sm"></select>
+        </div>
+        <div class="d-flex gap-2">
+            <button id="btnRunSeq" class="btn btn-sm btn-success flex-grow-1">▶ Ejecutar</button>
+            <button id="btnStopAuto" class="btn btn-sm btn-secondary">Stop</button>
+        </div>
+        <div id="seqRunMsg" class="msg mt-1"></div>
+        
+        <div id="seqPreview" class="border rounded p-1 bg-white mt-2 text-muted fst-italic"></div>
+      </section>
+
+    </div>
   </div>
 
+  <footer>Desarrollado por Brandon PM © 2025</footer>
   <script type="module" src="js/config.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
