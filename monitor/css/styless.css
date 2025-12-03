@@ -1,133 +1,162 @@
 /* monitor/css/styless.css */
 body {
-  background-color: #f5f7fb;
-  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f2f5;
+  font-family: system-ui, -apple-system, sans-serif;
   height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Sin scroll en body */
+  overflow: hidden; 
 }
 
 /* Navbar */
-nav.panel {
-  background: #fff;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ddd;
+.navbar-custom {
+  background: white;
+  border-bottom: 1px solid #dee2e6;
+  padding: 0.8rem 1.5rem;
   flex-shrink: 0;
 }
 
-/* Barra de controles superior */
+/* Barra superior controles */
 .top-controls {
-  padding: 10px 20px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  padding: 10px 25px;
+  background: #ffffff;
+  border-bottom: 1px solid #eaeaea;
   display: flex;
-  gap: 15px;
+  gap: 20px;
   align-items: center;
   flex-wrap: wrap;
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
 
-/* Contenedor Grid para las 3 tablas */
+/* Grid Principal */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 3 columnas iguales */
-  gap: 15px;
-  padding: 15px;
-  flex: 1; /* Ocupa el resto de la altura */
-  min-height: 0; /* Necesario para que el scroll interno funcione */
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  flex: 1; 
+  min-height: 0; 
+  background: #f8f9fa;
 }
 
+/* Tarjetas Monitor */
 .card-monitor {
   background: #fff;
-  border: 1px solid #e2e6ef;
-  border-radius: 8px;
+  border: none;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Llenar la altura del grid */
+  height: 100%;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  transition: transform 0.2s;
 }
 
 .card-header {
-  padding: 10px 15px;
-  background: #f8fafc;
-  border-bottom: 1px solid #eee;
-  font-weight: 600;
-  color: #444;
+  padding: 12px 20px;
+  background: #ffffff; /* Blanco limpio */
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 700;
+  color: #495057;
   flex-shrink: 0;
+  font-size: 0.95rem;
+  display: flex; align-items: center;
 }
 
+/* Tablas Modernas */
 .table-container {
-  flex: 1; /* Ocupa el espacio restante de la tarjeta */
-  overflow-y: auto; /* Scroll AQUI, no en la página */
+  flex: 1;
+  overflow-y: auto;
   padding: 0;
 }
 
-/* Tabla pegajosa (Sticky header) */
+/* Scrollbar fino */
+.table-container::-webkit-scrollbar { width: 6px; height: 6px; }
+.table-container::-webkit-scrollbar-thumb { background: #dee2e6; border-radius: 3px; }
+
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-th { position: sticky; top: 0; background: #fff; z-index: 1; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #f0f0f0; }
-tr:hover { background-color: #f9f9f9; }
 
-/* Footer */
-footer { text-align: center; padding: 5px; font-size: 0.8rem; background: #fff; flex-shrink: 0; }
-
-.badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
-.bg-primary { background-color: #008C8C !important; color: white; }
-.bg-secondary { background-color: #6c757d !important; color: white; }
-.bg-info { background-color: #0dcaf0 !important; color: black; }
-
-/* Responsive: En móviles poner una columna */
-@media (max-width: 900px) {
-  body { overflow: auto; height: auto; }
-  .dashboard-grid { grid-template-columns: 1fr; height: auto; }
-  .card-monitor { height: 400px; } /* Altura fija en móvil */
+th { 
+  position: sticky; top: 0; 
+  background: #f8f9fa; 
+  color: #6c757d;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 1; 
+  box-shadow: 0 1px 0 #dee2e6;
+  padding: 10px 15px;
 }
 
-/* --- Estilos para la Columna Dividida y Terminal --- */
+td { 
+  padding: 8px 15px; 
+  border-bottom: 1px solid #f1f3f5; 
+  color: #333;
+}
 
-/* Contenedor de la 3ra columna: Flex vertical para apilar Rutas y Terminal */
+tr:hover { background-color: #f8fcfd; }
+
+/* Columna Dividida */
 .split-column {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  height: 100%;     /* Ocupa toda la altura disponible en el grid */
-  min-height: 0;    /* Evita desbordamientos en flex */
+  gap: 20px;
+  height: 100%;
+  min-height: 0;
 }
 
-/* Forzar que las tarjetas dentro de split-column compartan la altura (50% c/u) */
 .split-column .card-monitor {
   flex: 1;
-  min-height: 0; /* Crucial para que el scroll interno funcione */
+  min-height: 0;
 }
 
-/* Estilo visual de la Terminal */
+/* Terminal Estilo Matrix/Hacker */
 .terminal-card {
-  border-color: #444;
+  border: 1px solid #333;
+  background: #000;
+}
+
+.terminal-card .card-header {
+  background: #1a1a1a;
+  color: #ccc;
+  border-bottom: 1px solid #333;
+  font-size: 0.85rem;
 }
 
 .terminal-body {
-  background-color: #1e1e1e;
-  color: #00ff00; /* Verde matrix */
-  font-family: 'Consolas', 'Monaco', monospace;
-  font-size: 0.8rem;
-  padding: 10px;
+  background-color: #0d0d0d;
+  color: #0f0; /* Verde terminal */
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.75rem;
+  padding: 12px;
   flex: 1;
-  overflow-y: auto; /* Scroll interno solo aquí */
+  overflow-y: auto;
   display: flex;
-  flex-direction: column-reverse; /* Lo nuevo aparece abajo, pero el scroll se pega abajo */
+  flex-direction: column-reverse;
+  line-height: 1.4;
 }
 
 .log-line {
   margin-bottom: 4px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #1a1a1a;
   padding-bottom: 2px;
   word-break: break-all;
 }
 
-.log-line.system { color: #888; font-style: italic; }
-.log-line.in { color: #00ff00; } /* Mensajes recibidos */
-.log-line.err { color: #ff4444; } /* Errores */
-.ts { color: #666; margin-right: 8px; font-size: 0.75rem; }
+.log-line.system { color: #666; font-style: italic; }
+.log-line.in { color: #2ecc71; } 
+.log-line.err { color: #e74c3c; }
+.ts { color: #555; margin-right: 8px; font-size: 0.7rem; }
+
+/* Footer */
+footer { text-align: center; padding: 5px; font-size: 0.75rem; background: #fff; flex-shrink: 0; border-top: 1px solid #eee; }
+
+.badge { padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+
+@media (max-width: 900px) {
+  body { overflow: auto; height: auto; }
+  .dashboard-grid { grid-template-columns: 1fr; height: auto; }
+  .card-monitor { height: 400px; }
+}
