@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="dashboard-grid">
+<div class="dashboard-grid">
     
     <div class="card-monitor">
       <div class="card-header"><i class="fa-solid fa-person-running me-2"></i>Movimientos</div>
@@ -66,14 +66,27 @@
       </div>
     </div>
 
-    <div class="card-monitor">
-      <div class="card-header"><i class="fa-solid fa-list-check me-2"></i>Rutas / Demos</div>
-      <div class="table-container">
-        <table>
-          <thead><tr><th>ID</th><th>Nombre</th><th>Creada</th></tr></thead>
-          <tbody id="tblRutas"></tbody>
-        </table>
+    <div class="split-column">
+      
+      <div class="card-monitor">
+        <div class="card-header"><i class="fa-solid fa-list-check me-2"></i>Rutas / Demos</div>
+        <div class="table-container">
+          <table>
+            <thead><tr><th>ID</th><th>Nombre</th><th>Creada</th></tr></thead>
+            <tbody id="tblRutas"></tbody>
+          </table>
+        </div>
       </div>
+
+      <div class="card-monitor terminal-card">
+        <div class="card-header bg-dark text-white border-secondary">
+          <i class="fa-solid fa-network-wired me-2"></i>Logs en Vivo (WS)
+        </div>
+        <div class="terminal-body" id="wsLog">
+          <div class="log-line system">Iniciando monitor...</div>
+        </div>
+      </div>
+
     </div>
 
   </div>
