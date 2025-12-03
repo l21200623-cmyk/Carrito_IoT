@@ -10,54 +10,67 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <nav class="panel d-flex justify-content-between align-items-center">
+
+  <nav class="navbar navbar-custom d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center gap-2">
-      <h5 class="m-0"><i class="fa-solid fa-gamepad me-2"></i>Control IoT</h5>
+      <div class="bg-primary text-white rounded p-2 d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+        <i class="fa-solid fa-gamepad"></i>
+      </div>
+      <h5 class="m-0 fw-bold text-secondary">Control IoT</h5>
     </div>
     <div class="d-flex gap-2">
-      <a class="btn btn-sm btn-primary disabled" href="#">Control</a>
-      <a class="btn btn-sm btn-outline-secondary" href="./monitor/index.html">Monitoreo</a>
+      <a class="btn btn-sm btn-primary fw-semibold shadow-sm pe-none" href="#">
+        <i class="fa-solid fa-gamepad me-1"></i> Control
+      </a>
+      <a class="btn btn-sm btn-outline-secondary fw-semibold border-0" href="./monitor/index.html">
+        <i class="fa-solid fa-desktop me-1"></i> Monitoreo
+      </a>
     </div>
   </nav>
 
   <div class="app-container">
     
     <div class="panel-col">
-      <div class="panel control-zone">
-        <div class="velocity-selector">
-          <small class="fw-bold me-2">Velocidad:</small>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="velocidadNivel" id="velBaja" value="180">
-            <label class="form-check-label" for="velBaja">180</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="velocidadNivel" id="velMedia" value="210" checked>
-            <label class="form-check-label" for="velMedia">210</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="velocidadNivel" id="velAlta" value="255">
-            <label class="form-check-label" for="velAlta">255</label>
+      <div class="custom-card control-zone h-100 p-4">
+        
+        <div class="velocity-selector d-flex align-items-center gap-3">
+          <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem; letter-spacing: 1px;">Potencia</small>
+          <div class="d-flex gap-2">
+            <div class="form-check form-check-inline m-0">
+              <input class="form-check-input" type="radio" name="velocidadNivel" id="velBaja" value="180">
+              <label class="form-check-label fw-semibold" for="velBaja">180</label>
+            </div>
+            <div class="form-check form-check-inline m-0">
+              <input class="form-check-input" type="radio" name="velocidadNivel" id="velMedia" value="210" checked>
+              <label class="form-check-label fw-semibold" for="velMedia">210</label>
+            </div>
+            <div class="form-check form-check-inline m-0">
+              <input class="form-check-input" type="radio" name="velocidadNivel" id="velAlta" value="255">
+              <label class="form-check-label fw-semibold" for="velAlta">MAX</label>
+            </div>
           </div>
         </div>
 
         <div class="main-controls">
           <div class="d-flex flex-column gap-3 align-items-center">
-            <button class="btn-circle" data-status="1"><i class="fa-solid fa-arrow-up fa-2x"></i></button>
-            <button class="btn-circle stop" data-status="3"><i class="fa-solid fa-stop fa-2x"></i></button>
-            <button class="btn-circle" data-status="2"><i class="fa-solid fa-arrow-down fa-2x"></i></button>
+            <button class="btn-circle" data-status="1" title="Adelante"><i class="fa-solid fa-arrow-up fa-2x"></i></button>
+            <button class="btn-circle stop" data-status="3" title="Detener"><i class="fa-solid fa-stop fa-2x"></i></button>
+            <button class="btn-circle" data-status="2" title="Atrás"><i class="fa-solid fa-arrow-down fa-2x"></i></button>
           </div>
 
           <div class="d-flex align-items-center gap-3">
-             <button class="btn-circle" data-status="11"><i class="fa-solid fa-rotate-left fa-1x"></i></button>
+             <button class="btn-circle bg-info border-0" style="width: 50px; height: 50px;" data-status="11" title="Giro 360 Izq"><i class="fa-solid fa-rotate-left"></i></button>
+             
              <div class="control-grid">
-                <button class="btn-square" data-status="5"><i class="fa-solid fa-arrow-up fa-2x rotate--45"></i></button>
-                <button class="btn-square" data-status="4"><i class="fa-solid fa-arrow-up fa-2x rotate-45"></i></button>
-                <button class="btn-square" data-status="9"><i class="fa-solid fa-arrow-left fa-2x"></i></button>
-                <button class="btn-square" data-status="8"><i class="fa-solid fa-arrow-right fa-2x"></i></button>
-                <button class="btn-square" data-status="7"><i class="fa-solid fa-arrow-up fa-2x rotate--135"></i></button>
-                <button class="btn-square" data-status="6"><i class="fa-solid fa-arrow-up fa-2x rotate-135"></i></button>
+                <button class="btn-square" data-status="5" title="Curva Adelante Izq"><i class="fa-solid fa-arrow-up fa-2x rotate--45"></i></button>
+                <button class="btn-square" data-status="4" title="Curva Adelante Der"><i class="fa-solid fa-arrow-up fa-2x rotate-45"></i></button>
+                <button class="btn-square" data-status="9" title="Giro 90 Izq"><i class="fa-solid fa-arrow-left fa-2x"></i></button>
+                <button class="btn-square" data-status="8" title="Giro 90 Der"><i class="fa-solid fa-arrow-right fa-2x"></i></button>
+                <button class="btn-square" data-status="7" title="Curva Atrás Izq"><i class="fa-solid fa-arrow-up fa-2x rotate--135"></i></button>
+                <button class="btn-square" data-status="6" title="Curva Atrás Der"><i class="fa-solid fa-arrow-up fa-2x rotate-135"></i></button>
              </div>
-             <button class="btn-circle" data-status="10"><i class="fa-solid fa-rotate-right fa-1x"></i></button>
+             
+             <button class="btn-circle bg-info border-0" style="width: 50px; height: 50px;" data-status="10" title="Giro 360 Der"><i class="fa-solid fa-rotate-right"></i></button>
           </div>
         </div>
       </div>
@@ -65,55 +78,67 @@
 
     <div class="panel-col">
       
-      <section class="panel py-2">
-        <div class="d-flex align-items-center gap-2 justify-content-between">
+      <div class="custom-card p-3">
+        <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center gap-2">
-            <label style="font-size: 0.85rem;">ID Disp:</label>
-            <input id="deviceIdInput" type="number" class="form-control form-control-sm" style="width: 70px;" value="1">
-            <button id="btnSetDevice" class="btn btn-sm btn-primary">Set</button>
+            <span class="text-muted small fw-bold">ID DISP:</span>
+            <div class="input-group input-group-sm" style="width: 100px;">
+              <input id="deviceIdInput" type="number" class="form-control" value="1">
+              <button id="btnSetDevice" class="btn btn-dark"><i class="fa-solid fa-check"></i></button>
+            </div>
           </div>
-          <div class="status-box">
-             Estado: <span id="estado" class="fw-bold">...</span>
+          <div class="status-badge">
+             <i class="fa-solid fa-circle-info me-1"></i> <span id="estado">LISTO</span>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="panel flex-grow-1">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-           <h6 class="m-0">Modo Automático</h6>
-           <span id="recBadge" class="badge bg-danger hidden">REC</span>
+      <div class="custom-card flex-grow-1 p-3 d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+           <h6 class="m-0 fw-bold text-primary"><i class="fa-solid fa-clapperboard me-2"></i>Modo Automático</h6>
+           <span id="recBadge" class="badge bg-danger rounded-pill hidden px-3">REC</span>
         </div>
         
-        <div class="seq-controls">
-          <button id="btnStartRec" class="btn btn-sm btn-outline-dark">🎬 Grabar</button>
-          <button id="btnStopRec" class="btn btn-sm btn-outline-danger" disabled>⏹ Guardar</button>
+        <div class="seq-controls mb-3">
+          <div class="btn-group w-100 shadow-sm" role="group">
+            <button id="btnStartRec" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-circle-dot text-danger"></i> Grabar</button>
+            <button id="btnStopRec" class="btn btn-sm btn-outline-secondary" disabled><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+          </div>
         </div>
 
-        <div id="seqForm" class="hidden my-2 p-2 bg-light rounded">
-          <input id="seqName" type="text" class="form-control form-control-sm mb-1" placeholder="Nombre secuencia...">
-          <button id="btnSaveSeq" class="btn btn-sm btn-success w-100">Confirmar Guardado</button>
+        <div id="seqForm" class="hidden mb-3 p-3 bg-light rounded border">
+          <label class="form-label small text-muted">Nombre de la Demo:</label>
+          <div class="input-group input-group-sm mb-2">
+            <input id="seqName" type="text" class="form-control" placeholder="Ej. Cuadrado Perfecto">
+            <button id="btnSaveSeq" class="btn btn-success">Guardar</button>
+          </div>
           <span id="seqSaveMsg" class="msg d-block"></span>
         </div>
 
-        <hr class="my-2"/>
+        <div class="mb-2">
+            <label class="form-label small text-muted">Seleccionar Demo:</label>
+            <div class="input-group input-group-sm">
+              <button id="btnReloadSeq" class="btn btn-outline-secondary bg-white"><i class="fa-solid fa-rotate"></i></button>
+              <select id="seqSelect" class="form-select"></select>
+            </div>
+        </div>
 
-        <div class="d-flex gap-1 mb-1">
-            <button id="btnReloadSeq" class="btn btn-sm btn-light border"><i class="fa-solid fa-sync"></i></button>
-            <select id="seqSelect" class="form-select form-select-sm"></select>
+        <div class="d-flex gap-2 mb-2">
+            <button id="btnRunSeq" class="btn btn-sm btn-success flex-grow-1 shadow-sm fw-semibold"><i class="fa-solid fa-play me-1"></i> EJECUTAR</button>
+            <button id="btnStopAuto" class="btn btn-sm btn-danger shadow-sm"><i class="fa-solid fa-stop"></i></button>
         </div>
-        <div class="d-flex gap-2">
-            <button id="btnRunSeq" class="btn btn-sm btn-success flex-grow-1">▶ Ejecutar</button>
-            <button id="btnStopAuto" class="btn btn-sm btn-secondary">Stop</button>
-        </div>
-        <div id="seqRunMsg" class="msg mt-1"></div>
+        <div id="seqRunMsg" class="msg text-center"></div>
         
-        <div id="seqPreview" class="border rounded p-1 bg-white mt-2 text-muted fst-italic"></div>
-      </section>
+        <div class="mt-3 flex-grow-1 d-flex flex-column">
+          <small class="text-muted mb-1 fst-italic">Pasos en secuencia:</small>
+          <div id="seqPreview" class="seq-list-container flex-grow-1"></div>
+        </div>
+      </div>
 
     </div>
   </div>
 
-  <footer>Desarrollado por Brandon PM © 2025</footer>
+  <footer>Desarrollado por Brandon PM © 2025 | v2.0 Bootstrap Edition</footer>
   <script type="module" src="js/config.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
