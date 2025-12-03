@@ -177,27 +177,82 @@ function startAuto() { stopAuto(); autoTimer = setInterval(refreshAll, AUTO_REFR
 function stopAuto()  { if (autoTimer) clearInterval(autoTimer); autoTimer = null; }
 
 /* =======================
-   WebSocket (PUSH)
+   WebSocket (PUSH) + Terminal
    ======================= */
+const wsLog = document.getElementById("wsLog");
+
+function logWS(msg, type = "in") {
+  if (!wsLog) return;
+  const div = document.createElement("div");
+  div.className = `log-line ${type}`;
+  
+  // Hora simple
+  const time = new Date().toLocaleTimeString('es-MX', { hour12: false });
+  
+  // Si es objeto, convertir a string bonito, si no, texto plano
+  const content = typeof msg === 'object' ? JSON.stringify(msg) : msg;
+  
+  div.innerHTML = `<span class="ts">[${time}]</span> ${content}`;
+  
+  // Insertar al principio (arriba) o usar prepend
+  wsLog.prepend(div);
+
+  // Limpiar logs viejos para no saturar memoria (mantener últimos 50)
+  if (wsLog.children.length > 50) {
+    wsLog.lastElementChild.remove();
+  }
+}
+
 (function connectWS() {
-  if (!WS_URL) { wsStatus && (wsStatus.textContent = "desactivado"); return; }
+  if (!WS_URL) { 
+    wsStatus && (wsStatus.textContent = "desactivado"); 
+    logWS("WebSocket desactivado en config", "system");
+    return; 
+  }
+  
   try {
+    logWS(`Conectando a ${WS_URL}...`, "system");
     const ws = new WebSocket(WS_URL);
-    ws.onopen    = () => { wsStatus && (wsStatus.textContent = "conectado"); ws.send(JSON.stringify({ type: "ping" })); };
-    ws.onclose   = () => { wsStatus && (wsStatus.textContent = "cerrado"); };
-    ws.onerror   = () => { wsStatus && (wsStatus.textContent = "error");  };
+    
+    ws.onopen = () => { 
+      wsStatus && (wsStatus.textContent = "conectado"); 
+      logWS("Conexión establecida", "system");
+      ws.send(JSON.stringify({ type: "ping" })); 
+    };
+    
+    ws.onclose = () => { 
+      wsStatus && (wsStatus.textContent = "cerrado"); 
+      logWS("Conexión cerrada", "err");
+    };
+    
+    ws.onerror = () => { 
+      wsStatus && (wsStatus.textContent = "error"); 
+      logWS("Error en conexión", "err");
+    };
+    
     ws.onmessage = async (e) => {
       try {
         const msg = JSON.parse(e.data);
+        
+        // 1. Mostrar en Terminal (excepto pongs para no spamear)
+        if (msg.type !== "pong") {
+           // Formateamos un poco el log para que sea legible
+           let displayTxt = msg.type;
+           if(msg.payload) displayTxt += ` | ${JSON.stringify(msg.payload)}`;
+           logWS(displayTxt, "in");
+        }
+
+        // 2. Lógica de refresco de tablas (La que ya tenías)
         if (["movimiento.insertado","obstaculo.detectado","ruta.paso_ejecutado","evasion.ejecutada"].includes(msg?.type)) {
           await refreshAll();
         }
       } catch (err) {
-        console.warn("WS message parse error:", err);
+        console.warn("WS parse error:", err);
       }
     };
-  } catch {
+  } catch (e) {
     wsStatus && (wsStatus.textContent = "no disponible");
+    logWS("Excepción al crear WS: " + e.message, "err");
   }
 })();
 
