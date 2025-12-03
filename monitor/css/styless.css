@@ -85,3 +85,49 @@ footer { text-align: center; padding: 5px; font-size: 0.8rem; background: #fff; 
   .dashboard-grid { grid-template-columns: 1fr; height: auto; }
   .card-monitor { height: 400px; } /* Altura fija en móvil */
 }
+
+/* --- Estilos para la Columna Dividida y Terminal --- */
+
+/* Contenedor de la 3ra columna: Flex vertical para apilar Rutas y Terminal */
+.split-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;     /* Ocupa toda la altura disponible en el grid */
+  min-height: 0;    /* Evita desbordamientos en flex */
+}
+
+/* Forzar que las tarjetas dentro de split-column compartan la altura (50% c/u) */
+.split-column .card-monitor {
+  flex: 1;
+  min-height: 0; /* Crucial para que el scroll interno funcione */
+}
+
+/* Estilo visual de la Terminal */
+.terminal-card {
+  border-color: #444;
+}
+
+.terminal-body {
+  background-color: #1e1e1e;
+  color: #00ff00; /* Verde matrix */
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.8rem;
+  padding: 10px;
+  flex: 1;
+  overflow-y: auto; /* Scroll interno solo aquí */
+  display: flex;
+  flex-direction: column-reverse; /* Lo nuevo aparece abajo, pero el scroll se pega abajo */
+}
+
+.log-line {
+  margin-bottom: 4px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 2px;
+  word-break: break-all;
+}
+
+.log-line.system { color: #888; font-style: italic; }
+.log-line.in { color: #00ff00; } /* Mensajes recibidos */
+.log-line.err { color: #ff4444; } /* Errores */
+.ts { color: #666; margin-right: 8px; font-size: 0.75rem; }
